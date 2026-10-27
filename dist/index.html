@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100f">
+  <meta name="description" content="キャットアンドチョコレートをゲームマスター一人で進行するための専用コンソール">
+  <title>CAT × CHOCOLATE | GM CONSOLE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <button class="brand" data-action="home" aria-label="セットアップに戻る">
+      <span class="brand-mark" aria-hidden="true"><span>×</span></span>
+      <span class="brand-copy"><strong>CAT &amp; CHOCOLATE</strong><small>GM CONSOLE</small></span>
+    </button>
+    <div class="topbar-actions">
+      <span class="live-indicator"><i></i> GAME MASTER ONLY</span>
+      <button class="icon-button" data-action="open-editor" aria-label="デッキを編集">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg>
+        <span>デッキ編集</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="presentation-dialog" class="presentation-dialog">
+    <button class="dialog-close" data-action="close-presentation" aria-label="閉じる">×</button>
+    <div id="presentation-content"></div>
+  </dialog>
+
+  <dialog id="editor-dialog" class="editor-dialog">
+    <form method="dialog" class="editor-shell" id="editor-form">
+      <div class="editor-header">
+        <div>
+          <p class="eyebrow">LOCAL DECK EDITOR</p>
+          <h2>カードを追加する</h2>
+        </div>
+        <button class="dialog-close static" value="cancel" aria-label="閉じる">×</button>
+      </div>
+      <p class="editor-note">追加したカードはこのブラウザに保存されます。初期カードは消えません。</p>
+      <label>
+        <span>アイテムカード <small>1行に1枚</small></span>
+        <textarea id="custom-items" rows="6" placeholder="例：巨大な猫じゃらし&#10;賞味期限ぎりぎりのチョコ"></textarea>
+      </label>
+      <label>
+        <span>ピンチエピソード <small>空行で区切る</small></span>
+        <textarea id="custom-episodes" rows="8" placeholder="新しいピンチを入力…"></textarea>
+      </label>
+      <div class="editor-actions">
+        <button class="button ghost" type="button" data-action="reset-custom">追加分を消去</button>
+        <button class="button primary" type="submit" value="default">保存する</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="setup-template">
+    <section class="setup-page page-enter">
+      <div class="setup-intro">
+        <p class="eyebrow">TONIGHT'S SOCIAL SURVIVAL</p>
+        <h1>ピンチを、<br><em>切り札</em>に変えろ。</h1>
+        <p class="lead">予測不能なエピソード。頼りないアイテム。<br>あとは、チームのひらめき次第。</p>
+        <div class="rule-strip" aria-label="ゲームの流れ">
+          <div><b>01</b><span>ピンチを引く</span></div>
+          <div><b>02</b><span>アイテムで解決</span></div>
+          <div><b>03</b><span>審査員が選ぶ</span></div>
+        </div>
+      </div>
+      <div class="setup-card">
+        <div class="setup-card-head">
+          <span>GAME SETUP</span><span class="step-tag">STEP 01 / 01</span>
+        </div>
+        <h2>チームを編成</h2>
+        <p>18枚の初期デッキに合わせ、2〜3チームで遊べます。</p>
+        <fieldset class="team-count-field">
+          <legend>チーム数</legend>
+          <div class="segmented">
+            <button type="button" class="active" data-action="set-team-count" data-count="2">2 <small>TEAMS</small></button>
+            <button type="button" data-action="set-team-count" data-count="3">3 <small>TEAMS</small></button>
+          </div>
+        </fieldset>
+        <div id="team-name-fields" class="team-name-fields"></div>
+        <button class="button primary jumbo" data-action="start-game"><span>ゲームをはじめる</span><b>→</b></button>
+        <p class="setup-footnote"><span>●</span> すべての進行はこの画面だけで完結します</p>
+      </div>
+    </section>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
