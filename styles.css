@@ -243,3 +243,136 @@ dialog::backdrop { background: rgba(12,10,9,.88); backdrop-filter: blur(9px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* POP REDESIGN — NEXUS EDITION */
+:root {
+  --ink: #27233f;
+  --paper: #fffaf3;
+  --paper-2: #ffe8f2;
+  --cream: #fffdf7;
+  --orange: #ff5ea8;
+  --orange-dark: #e43d8c;
+  --brown: #5444c9;
+  --mint: #82e8c4;
+  --yellow: #ffeb59;
+  --blue: #5468ff;
+  --line: rgba(39,35,63,.16);
+  --muted: #746f86;
+  --shadow: 0 18px 0 rgba(39,35,63,.08), 0 28px 65px rgba(84,68,201,.12);
+}
+
+html, body { background: var(--paper); }
+body {
+  background-image: radial-gradient(rgba(84,104,255,.12) 1.5px, transparent 1.5px), linear-gradient(140deg, #fffaf3 0%, #fff7fb 50%, #f2f4ff 100%);
+  background-size: 22px 22px, 100% 100%;
+}
+.noise { opacity: .06; }
+.topbar { background: rgba(255,250,243,.94); border-bottom: 3px solid var(--ink); }
+.brand-mark { background: var(--yellow); border: 2px solid var(--ink); border-radius: 12px; transform: rotate(-6deg); box-shadow: 3px 3px 0 var(--ink); }
+.brand-mark span { color: var(--ink); font-family: "Noto Sans JP", sans-serif; font-size: 20px; transform: rotate(6deg); }
+.brand-copy strong { color: var(--blue); }
+.live-indicator { color: var(--ink); font-weight: 700; }
+.live-indicator i { background: #27b982; }
+.icon-button { background: var(--yellow); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.icon-button:hover { background: #fff39b; transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--ink); }
+
+.setup-page::before { content: "★"; position: absolute; z-index: -1; color: var(--yellow); font-size: 170px; left: 42%; top: 13%; transform: rotate(13deg); }
+.setup-page::after { content: "!?"; color: #dadffd; font-family: "Noto Sans JP", sans-serif; font-weight: 900; transform: rotate(-8deg) translate(-50%, -50%); }
+.eyebrow { color: var(--blue); font-weight: 700; }
+.setup-intro h1 { font-family: "Noto Sans JP", sans-serif; font-weight: 900; letter-spacing: -.07em; line-height: .98; }
+.setup-intro h1 em { color: var(--orange); -webkit-text-stroke: 2px var(--ink); text-shadow: 5px 5px 0 var(--yellow); }
+.setup-intro h1 em::after { display: none; }
+.game-title { display: inline-block; margin: 24px 0 0; padding: 9px 15px; color: white; background: var(--blue); border: 2px solid var(--ink); border-radius: 8px; box-shadow: 4px 4px 0 var(--ink); font-weight: 900; transform: rotate(-1deg); }
+.lead { color: var(--ink); font-weight: 600; }
+.rule-strip { border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; background: white; box-shadow: 5px 5px 0 var(--ink); }
+.rule-strip div { border-color: var(--ink); padding-left: 18px; }
+.rule-strip div:nth-child(1) { background: #fff5a8; }
+.rule-strip div:nth-child(2) { background: #d9fff1; }
+.rule-strip div:nth-child(3) { background: #ffe0ee; }
+.rule-strip b { color: var(--blue); font-weight: 800; }
+
+.setup-card { background: #eeeaff; color: var(--ink); border: 3px solid var(--ink); border-radius: 18px 42px 18px 18px; box-shadow: 10px 10px 0 var(--ink); }
+.setup-card::before { inset: 11px; border: 2px dashed rgba(84,68,201,.2); border-radius: 10px 30px 10px 10px; }
+.setup-card-head, .setup-card > p, .team-name-fields label span, legend { color: var(--muted); }
+.step-tag { border-color: var(--ink); background: var(--yellow); color: var(--ink); }
+.setup-card h2 { font-family: "Noto Sans JP", sans-serif; font-weight: 900; }
+.segmented { grid-template-columns: repeat(5, 1fr); border: 2px solid var(--ink); background: white; padding: 5px; }
+.segmented button { min-width: 0; padding: 13px 5px; color: var(--muted); }
+.segmented button small { display: block; }
+.segmented button.active { background: var(--yellow); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.team-name-fields { grid-template-columns: repeat(2, minmax(0,1fr)); max-height: 290px; overflow: auto; padding-right: 4px; }
+.team-name-fields input { background: white; color: var(--ink); border: 2px solid var(--ink); }
+.button { border: 2px solid var(--ink); }
+.button.primary { background: var(--orange); color: white; box-shadow: 4px 4px 0 var(--ink); }
+.button.primary:hover { background: #ff79b6; transform: translate(-1px,-1px); box-shadow: 6px 6px 0 var(--ink); }
+.setup-card .setup-footnote { color: var(--muted); }
+
+.game-status { background: var(--yellow); border-bottom: 2px solid var(--ink); }
+.round-label b { color: var(--blue); }
+.small-button { border: 2px solid var(--ink); background: white; box-shadow: 2px 2px 0 var(--ink); }
+.episode-wrap { padding-top: 28px; }
+.episode-card { min-height: 430px; border: 3px solid var(--ink); border-radius: 24px; box-shadow: 10px 10px 0 var(--ink); background-color: #dfe3ff; background-size: 52% 100%; background-position: right center; background-repeat: no-repeat; }
+.episode-card::before { display: none; }
+.episode-card::after { inset: 12px; border: 2px dashed rgba(39,35,63,.24); border-radius: 14px; }
+.episode-content { width: 53%; min-height: 424px; padding: clamp(30px, 4vw, 54px); background: #fff8ca; color: var(--ink); border-right: 3px solid var(--ink); }
+.episode-kicker { color: var(--blue); font-weight: 800; }
+.episode-kicker::before { background: var(--orange); height: 4px; }
+.episode-content h1 { font-family: "Noto Sans JP", sans-serif; font-weight: 800; font-size: clamp(18px, 1.65vw, 26px); line-height: 1.65; text-shadow: none; }
+.button.light { background: white; border-color: var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.button.dark-ghost { color: var(--ink); background: transparent; border-color: var(--ink); }
+.mission-badge { right: 3.5%; top: 24px; bottom: auto; width: 144px; height: 144px; background: var(--orange); border: 3px solid var(--ink); box-shadow: 7px 7px 0 var(--ink); }
+
+.section-heading h2 { font-family: "Noto Sans JP", sans-serif; font-weight: 900; font-size: 25px; }
+.teams-grid { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+.team-panel { background: white; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--team-color); }
+.team-head { background: color-mix(in srgb, var(--team-color) 16%, white); border-bottom: 2px solid var(--ink); }
+.team-index { border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.hand { grid-template-columns: repeat(5, minmax(82px,1fr)); overflow-x: auto; padding-bottom: 18px; }
+.item-card { background: #fffdf7; border: 2px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 rgba(39,35,63,.75); }
+.item-card:hover { box-shadow: 5px 7px 0 rgba(39,35,63,.75); }
+.item-card.selected { border-color: var(--ink); box-shadow: 5px 7px 0 var(--ink); }
+.present-button { background: var(--blue); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.team-actions { grid-template-columns: 1fr; }
+.point-award { margin-top: 7px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: color-mix(in srgb, var(--team-color) 12%, white); border: 2px solid var(--ink); border-radius: 10px; }
+.point-award > span { font-size: 11px; font-weight: 800; }
+.point-stepper { display: grid; grid-template-columns: 35px 50px 35px; align-items: stretch; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; background: white; }
+.point-stepper button { border: 0; background: var(--yellow); cursor: pointer; font-weight: 900; font-size: 18px; }
+.point-stepper input { width: 50px; min-width: 0; border: 0; border-left: 2px solid var(--ink); border-right: 2px solid var(--ink); text-align: center; font-weight: 900; color: var(--ink); background: white; appearance: textfield; }
+.point-stepper input::-webkit-inner-spin-button { appearance: none; }
+.round-footer { background: var(--blue); border: 3px solid var(--ink); box-shadow: 7px 7px 0 var(--ink); }
+.round-footer p { color: #dfe3ff; }
+.round-footer .button.primary { background: var(--yellow); color: var(--ink); }
+
+.presentation-dialog { background: #7161ef; }
+.presentation-shell { background: radial-gradient(circle at 15% 12%, var(--yellow) 0 8%, transparent 8.3%), radial-gradient(circle at 87% 18%, #ff8dc3 0 11%, transparent 11.3%), #7161ef; }
+.presentation-title { font-family: "Noto Sans JP", sans-serif; font-weight: 900; text-shadow: 4px 4px 0 var(--ink); }
+.presentation-card { border: 3px solid var(--ink); border-radius: 18px 44px 18px 18px; box-shadow: 9px 9px 0 var(--ink); }
+.editor-dialog { border: 3px solid var(--ink); box-shadow: 9px 9px 0 var(--ink); }
+
+@media (max-width: 1050px) {
+  .setup-page { grid-template-columns: 1fr 460px; }
+  .episode-content { width: 58%; }
+  .episode-card { background-size: 48% 100%; }
+}
+@media (max-width: 780px) {
+  .setup-page { display: block; }
+  .setup-page::before { font-size: 90px; left: 75%; top: 3%; }
+  .team-name-fields { grid-template-columns: 1fr; max-height: none; }
+  .segmented { grid-template-columns: repeat(5, minmax(0,1fr)); }
+  .segmented button { font-size: 16px; }
+  .episode-card { min-height: 0; background-size: 100% 250px; background-position: top center; }
+  .episode-content { width: 100%; min-height: 0; margin-top: 250px; padding: 30px 24px 110px; border-right: 0; border-top: 3px solid var(--ink); }
+  .episode-card::after { display: none; }
+  .episode-content h1 { font-size: 18px; }
+  .mission-badge { width: 110px; height: 110px; top: 122px; right: 22px; }
+  .hand { grid-template-columns: repeat(5, minmax(100px,1fr)); }
+}
+@media (max-width: 520px) {
+  .brand-copy strong { max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .setup-intro h1 { font-size: clamp(45px, 14vw, 62px); }
+  .game-title { font-size: 12px; }
+  .segmented button small { display: none; }
+  .episode-content { padding-bottom: 105px; }
+  .teams-grid { grid-template-columns: 1fr; }
+  .point-award { align-items: flex-start; }
+}

@@ -1,23 +1,43 @@
 const DEFAULT_ITEMS = [
-  "宇宙人", "コーラ", "生ハム入りケーキ", "ニンニクマシマシ焼肉のたれ", "iQOS", "黄金のブレーカー像",
-  "Yutaka Nishida", "NEXUS弾幕", "一升瓶", "最強のWi-Fi", "大量のミレー", "あふちのインスタアカウント",
-  "がるちの画力", "ムッタの身長", "ノマドの海外の友達30人", "ティーバーの脚力", "エラーの歌声", "おじさんず名言集"
+  "宇宙人", "コーラ", "ニンニクマシマシ焼肉のたれ", "iQOS", "Yutaka Nishida", "NEXUS弾幕", "一升瓶",
+  "最強のWi-Fi", "大量のミレー", "おじさんず名言集", "⚡️ブレーカーさんの演技力", "🚽おべんじょのみそまる",
+  "🫁ちへどの教え子たち", "🐹ハムの無限に歩ける脚", "🦷奥歯の怖すぎる真顔", "📺ティーバーの超絶足技",
+  "⚔️カタナの抜刀術", "🦁しぃしぃのスタディビザ", "🐏ノマドの海外の友達30人", "🪄ぼるでの生ハム入りケーキ",
+  "❤️‍🔥ハスラーのメンタル指南書", "🔏エラーの歌声", "🚀ムッタの身長", "🐰あふちのインスタアカウント",
+  "💭あとものノンデリ思想書", "🍭がるちの画力", "✈️ハフのフランス語", "🗺️フィーちゃんのワクワクノート",
+  "🩲おぱんちゅのファッションセンス", "🪭あかねの気働き力", "🖱️ワースの煽りスキル", "🍆なすらの語彙力",
+  "短足事故画", "自分のあだ名のもの"
 ];
 
 const DEFAULT_EPISODES = [
   {
     id: "yakiniku-kiss",
-    text: "彼氏と家で焼肉パーティーをした。そのあと夜風にあたろうと外に散歩をしに行っていい感じの雰囲気になった。完全にキスをする流れになって、もう少しで唇と唇が重なり合うと言うタイミングで相手にゲップをかけてしまった。",
+    text: "彼氏と家で焼肉パーティーをした。そのあと夜風にあたろうと外に散歩をしに行っていい感じの雰囲気になった。完全にキスをする流れになって、もう少しで唇と唇が重なり合うと言うタイミングで相手にゲップをかけてしまった。気まずい…",
     image: "./assets/episode-yakiniku.jpg"
   },
   {
-    id: "tokushima-ramen",
-    text: "とある女の子が、徳島ラーメンに夢中になっていました。その後帰り道の途中、『なんか軽いな』と感じ手元を振り返ると、なんと言うことでしょう！ 持ってきたはずのキャリーケースをラーメン屋さんに置いてきたではありませんか…。",
-    image: "./assets/episode-ramen.jpg"
+    id: "lost-friend",
+    text: "仲間がお酒を飲みすぎて、いてもたってもいられず失踪。深夜に民間の玄関でふらふらと揺れている。明らかに不審者だ。どうやって連れ帰ろう。",
+    image: "./assets/episode-lost-friend-pop.jpg"
+  },
+  {
+    id: "tokushima-bus-suitcase",
+    text: "とある女の子が、徳島ラーメンに夢中になっていました。その後帰り道の途中、『なんか軽いな』と感じ手元を振り返ると、なんと言うことでしょう！ 持ってきたはずのキャリーケースを徳島駅で降りたバスの下のところに置いてきたではありませんか…。中には大事なものが！どうやって仙台まで持ってこよう。",
+    image: "./assets/episode-bus-suitcase-pop.jpg"
+  },
+  {
+    id: "akigawa-bangs",
+    text: "あきる野でデジタルデトックスキャンプ。夜はBBQをしながら夢やこれからを熱く語り合う、めちゃくちゃいい時間に。コテージに帰って『ぱっつん前髪やってみたいんだよね』とメンバーに切ってもらうことに。『ここまでで大丈夫だからね！』と指で示していたら、じょっきん。わかめちゃんが爆誕しました。どうしよう、誤魔化しの効かない長さすぎる…！",
+    image: "./assets/episode-bangs-pop.jpg"
+  },
+  {
+    id: "gifu-sake",
+    text: "ちょっといい日本酒を飲みつつプロジェクトリーダーに相談していたら、おいしすぎて気づけば一升瓶を空け、それを片手にリーダーの住む岐阜へ。二人のリーダーは口をあんぐり。なんて言い訳をして、どうやって帰ろう…？",
+    image: "./assets/episode-gifu-sake-pop.jpg"
   }
 ];
 
-const TEAM_COLORS = ["#ff5a2a", "#387b70", "#7559a6"];
+const TEAM_COLORS = ["#ff5ea8", "#5468ff", "#27b982", "#ff8b32", "#8c5de8", "#ef4b4b"];
 const app = document.querySelector("#app");
 const setupTemplate = document.querySelector("#setup-template");
 const presentationDialog = document.querySelector("#presentation-dialog");
@@ -26,7 +46,7 @@ const editorDialog = document.querySelector("#editor-dialog");
 const editorForm = document.querySelector("#editor-form");
 const toast = document.querySelector("#toast");
 
-let setup = { teamCount: 2, names: ["チーム A", "チーム B", "チーム C"] };
+let setup = { teamCount: 2, names: ["チーム A", "チーム B", "チーム C", "チーム D", "チーム E", "チーム F"] };
 let state = null;
 let toastTimer;
 
@@ -90,7 +110,7 @@ function startGame() {
   const allItems = [...DEFAULT_ITEMS, ...custom.items];
   const deck = shuffle(allItems.map((name, index) => ({ id: `item-${index}-${name}`, name })));
   const teams = Array.from({ length: setup.teamCount }, (_, index) => ({
-    name: setup.names[index], color: TEAM_COLORS[index], hand: deck.splice(0, 5), selected: [], score: 0
+    name: setup.names[index], color: TEAM_COLORS[index], hand: deck.splice(0, 5), selected: [], score: 0, roundPoints: 0
   }));
   const customEpisodes = custom.episodes.map((text, index) => ({ id: `custom-${index}`, text, image: null }));
   state = {
@@ -100,10 +120,10 @@ function startGame() {
     episodes: [...DEFAULT_EPISODES, ...customEpisodes],
     episodeHistory: [],
     episode: null,
-    required: 0,
-    winnerIndex: null
+    required: 0
   };
   drawEpisode();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function drawEpisode() {
@@ -116,8 +136,7 @@ function drawEpisode() {
   state.episode = candidates[Math.floor(Math.random() * candidates.length)];
   state.episodeHistory.push(state.episode.id);
   state.required = Math.floor(Math.random() * 3) + 1;
-  state.winnerIndex = null;
-  state.teams.forEach(team => { team.selected = []; });
+  state.teams.forEach(team => { team.selected = []; team.roundPoints = 0; });
   renderGame();
 }
 
@@ -177,7 +196,7 @@ function renderTeam(team, teamIndex) {
   const selectedCount = team.selected.length;
   const ready = selectedCount === state.required;
   return `
-    <article class="team-panel ${state.winnerIndex === teamIndex ? "winner" : ""}" style="--team-color:${team.color}">
+    <article class="team-panel" style="--team-color:${team.color}">
       <header class="team-head">
         <div class="team-identity"><span class="team-index">${teamIndex + 1}</span><h3>${escapeHTML(team.name)}</h3></div>
         <span class="score"><b>${team.score}</b> PT</span>
@@ -196,7 +215,14 @@ function renderTeam(team, teamIndex) {
         <div class="selection-state"><span>${selectedCount} / ${state.required} 枚選択</span>${ready ? "<strong>READY</strong>" : ""}</div>
         <div class="team-actions">
           <button class="present-button" data-action="present" data-team="${teamIndex}" ${ready ? "" : "disabled"}>選んだカードを大きく表示</button>
-          <button class="winner-button ${state.winnerIndex === teamIndex ? "active" : ""}" data-action="choose-winner" data-team="${teamIndex}" title="このチームを勝者にする" aria-label="${escapeHTML(team.name)}を勝者にする">★</button>
+        </div>
+        <div class="point-award">
+          <span>このラウンドの得点</span>
+          <div class="point-stepper">
+            <button data-action="adjust-points" data-team="${teamIndex}" data-delta="-1" aria-label="${escapeHTML(team.name)}の得点を1減らす">−</button>
+            <input type="number" min="0" max="99" inputmode="numeric" data-round-points="${teamIndex}" value="${team.roundPoints}" aria-label="${escapeHTML(team.name)}のラウンド得点">
+            <button data-action="adjust-points" data-team="${teamIndex}" data-delta="1" aria-label="${escapeHTML(team.name)}の得点を1増やす">＋</button>
+          </div>
         </div>
       </footer>
     </article>
@@ -206,12 +232,13 @@ function renderTeam(team, teamIndex) {
 function roundFooterText() {
   const readyCount = state.teams.filter(team => team.selected.length === state.required).length;
   if (readyCount < state.teams.length) return `<strong>${readyCount}/${state.teams.length}チーム</strong> がカード選択済み`;
-  if (state.winnerIndex === null) return `全チーム発表可能。<strong>審査員の勝者を★で選択</strong>`;
-  return `<strong>${escapeHTML(state.teams[state.winnerIndex].name)}</strong> がこのラウンドの勝者`;
+  const pointTotal = state.teams.reduce((sum, team) => sum + team.roundPoints, 0);
+  if (pointTotal === 0) return `全チーム発表可能。<strong>審査員の人数分、得点を入力</strong>`;
+  return `このラウンドは合計 <strong>${pointTotal}ポイント</strong> を付与`;
 }
 
 function canFinishRound() {
-  return state.teams.every(team => team.selected.length === state.required) && state.winnerIndex !== null;
+  return state.teams.every(team => team.selected.length === state.required) && state.teams.some(team => team.roundPoints > 0);
 }
 
 function toggleCard(teamIndex, cardIndex) {
@@ -243,12 +270,6 @@ function presentTeam(teamIndex) {
   presentationDialog.showModal();
 }
 
-function chooseWinner(teamIndex) {
-  state.winnerIndex = teamIndex;
-  renderGame();
-  showToast(`${state.teams[teamIndex].name}を勝者に選びました`);
-}
-
 function drawFromDeck(count) {
   const drawn = [];
   for (let i = 0; i < count; i += 1) {
@@ -263,13 +284,14 @@ function drawFromDeck(count) {
 
 function finishRound() {
   if (!canFinishRound()) return;
-  state.teams[state.winnerIndex].score += 1;
   const returnedCards = [];
   state.teams.forEach(team => {
+    team.score += team.roundPoints;
     const used = team.hand.filter(card => team.selected.includes(card.id));
     returnedCards.push(...used);
     team.hand = team.hand.filter(card => !team.selected.includes(card.id));
     team.selected = [];
+    team.roundPoints = 0;
   });
   state.deck = shuffle([...state.deck, ...returnedCards]);
   state.teams.forEach(team => { team.hand.push(...drawFromDeck(5 - team.hand.length)); });
@@ -312,6 +334,13 @@ document.addEventListener("input", event => {
   if (event.target.matches("[data-team-name]")) setup.names[Number(event.target.dataset.teamName)] = event.target.value;
 });
 
+document.addEventListener("change", event => {
+  if (!event.target.matches("[data-round-points]")) return;
+  const teamIndex = Number(event.target.dataset.roundPoints);
+  state.teams[teamIndex].roundPoints = Math.max(0, Math.min(99, Number(event.target.value) || 0));
+  renderGame();
+});
+
 document.addEventListener("click", event => {
   const button = event.target.closest("[data-action]");
   if (!button) return;
@@ -325,7 +354,11 @@ document.addEventListener("click", event => {
   if (action === "toggle-card") toggleCard(Number(button.dataset.team), Number(button.dataset.card));
   if (action === "present") presentTeam(Number(button.dataset.team));
   if (action === "close-presentation") presentationDialog.close();
-  if (action === "choose-winner") chooseWinner(Number(button.dataset.team));
+  if (action === "adjust-points") {
+    const team = state.teams[Number(button.dataset.team)];
+    team.roundPoints = Math.max(0, Math.min(99, team.roundPoints + Number(button.dataset.delta)));
+    renderGame();
+  }
   if (action === "finish-round") finishRound();
   if (action === "read-episode") readEpisode();
   if (action === "redraw-episode") { drawEpisode(); showToast("エピソードと必要枚数を引き直しました"); }

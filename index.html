@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#11100f">
-  <meta name="description" content="キャットアンドチョコレートをゲームマスター一人で進行するための専用コンソール">
-  <title>CAT × CHOCOLATE | GM CONSOLE</title>
+  <meta name="theme-color" content="#ffeb59">
+  <meta name="description" content="ピンチに強いのは誰だ！？NEXUSキャットアンドチョコレート ゲームマスター専用アプリ">
+  <title>ピンチに強いのは誰だ！？NEXUSキャットアンドチョコレート</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
@@ -15,11 +15,11 @@
   <div class="noise" aria-hidden="true"></div>
   <header class="topbar">
     <button class="brand" data-action="home" aria-label="セットアップに戻る">
-      <span class="brand-mark" aria-hidden="true"><span>×</span></span>
-      <span class="brand-copy"><strong>CAT &amp; CHOCOLATE</strong><small>GM CONSOLE</small></span>
+      <span class="brand-mark" aria-hidden="true"><span>N</span></span>
+      <span class="brand-copy"><strong>NEXUS CAT &amp; CHOCOLATE</strong><small>GAME MASTER CONSOLE</small></span>
     </button>
     <div class="topbar-actions">
-      <span class="live-indicator"><i></i> GAME MASTER ONLY</span>
+      <span class="live-indicator"><i></i> GM MODE</span>
       <button class="icon-button" data-action="open-editor" aria-label="デッキを編集">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg>
         <span>デッキ編集</span>
@@ -64,13 +64,14 @@
   <template id="setup-template">
     <section class="setup-page page-enter">
       <div class="setup-intro">
-        <p class="eyebrow">TONIGHT'S SOCIAL SURVIVAL</p>
-        <h1>ピンチを、<br><em>切り札</em>に変えろ。</h1>
-        <p class="lead">予測不能なエピソード。頼りないアイテム。<br>あとは、チームのひらめき次第。</p>
+        <p class="eyebrow">NEXUS PRESENTS — SOCIAL SURVIVAL GAME</p>
+        <h1>ピンチに<br>強いのは<em>誰だ!?</em></h1>
+        <p class="game-title">NEXUS キャットアンドチョコレート</p>
+        <p class="lead">予測不能なエピソード。クセの強いアイテム。<br>笑いとひらめきで、ピンチをひっくり返そう！</p>
         <div class="rule-strip" aria-label="ゲームの流れ">
           <div><b>01</b><span>ピンチを引く</span></div>
           <div><b>02</b><span>アイテムで解決</span></div>
-          <div><b>03</b><span>審査員が選ぶ</span></div>
+          <div><b>03</b><span>審査員が投票</span></div>
         </div>
       </div>
       <div class="setup-card">
@@ -78,12 +79,15 @@
           <span>GAME SETUP</span><span class="step-tag">STEP 01 / 01</span>
         </div>
         <h2>チームを編成</h2>
-        <p>18枚の初期デッキに合わせ、2〜3チームで遊べます。</p>
+        <p>34枚のアイテムデッキで、2〜6チームまで遊べます。</p>
         <fieldset class="team-count-field">
           <legend>チーム数</legend>
           <div class="segmented">
             <button type="button" class="active" data-action="set-team-count" data-count="2">2 <small>TEAMS</small></button>
             <button type="button" data-action="set-team-count" data-count="3">3 <small>TEAMS</small></button>
+            <button type="button" data-action="set-team-count" data-count="4">4 <small>TEAMS</small></button>
+            <button type="button" data-action="set-team-count" data-count="5">5 <small>TEAMS</small></button>
+            <button type="button" data-action="set-team-count" data-count="6">6 <small>TEAMS</small></button>
           </div>
         </fieldset>
         <div id="team-name-fields" class="team-name-fields"></div>
