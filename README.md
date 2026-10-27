@@ -4,7 +4,10 @@
 
 ## 公開サイト
 
-https://cat-chocolate-gm-1027.laborobo.chatgpt.site
+GitHub Pages: https://yuzuran0902-crypto.github.io/nexus-cat-and-chocolate/
+
+ChatGPT Sites: https://cat-chocolate-gm-1027.laborobo.chatgpt.site
+
 
 ## 主な機能
 
