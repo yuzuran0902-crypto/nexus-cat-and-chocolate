@@ -20,6 +20,10 @@
     </button>
     <div class="topbar-actions">
       <span class="live-indicator"><i></i> GM MODE</span>
+      <button class="icon-button" data-action="open-card-list" aria-label="カード一覧を開く">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h10v13H4zM14 8.5h6v10h-6M7 9h4M7 12h4"/></svg>
+        <span>カード一覧</span>
+      </button>
       <button class="icon-button" data-action="open-editor" aria-label="デッキを編集">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg>
         <span>デッキ編集</span>
@@ -34,6 +38,20 @@
   <dialog id="presentation-dialog" class="presentation-dialog">
     <button class="dialog-close" data-action="close-presentation" aria-label="閉じる">×</button>
     <div id="presentation-content"></div>
+  </dialog>
+
+  <dialog id="card-list-dialog" class="card-list-dialog">
+    <div class="card-list-shell">
+      <div class="card-list-header">
+        <div>
+          <p class="eyebrow">ALL CARDS LIBRARY</p>
+          <h2>カード一覧</h2>
+          <p>ゲームに入っているアイテムとピンチを、いつでも確認できます。</p>
+        </div>
+        <button class="dialog-close static" data-action="close-card-list" aria-label="カード一覧を閉じる">×</button>
+      </div>
+      <div id="card-list-content"></div>
+    </div>
   </dialog>
 
   <dialog id="editor-dialog" class="editor-dialog">

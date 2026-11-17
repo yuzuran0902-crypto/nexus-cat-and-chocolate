@@ -32,7 +32,7 @@ const DEFAULT_EPISODES = [
   },
   {
     id: "gifu-sake",
-    text: "ちょっといい日本酒を飲みつつプロジェクトリーダーに相談していたら、おいしすぎて気づけば一升瓶を空け、それを片手にリーダーの住む岐阜へ。二人のリーダーは口をあんぐり。なんて言い訳をして、どうやって帰ろう…？",
+    text: "ちょっといい日本酒を飲みつつプロジェクトリーダーに相談していたら、おいしすぎて気づけば一升瓶を空け、それを片手にリーダーの住む岐阜へ。リーダーは口をあんぐり。なんて言い訳をして、どうやって帰ろう…？",
     image: "./assets/episode-gifu-sake-pop.jpg"
   }
 ];
@@ -42,6 +42,8 @@ const app = document.querySelector("#app");
 const setupTemplate = document.querySelector("#setup-template");
 const presentationDialog = document.querySelector("#presentation-dialog");
 const presentationContent = document.querySelector("#presentation-content");
+const cardListDialog = document.querySelector("#card-list-dialog");
+const cardListContent = document.querySelector("#card-list-content");
 const editorDialog = document.querySelector("#editor-dialog");
 const editorForm = document.querySelector("#editor-form");
 const toast = document.querySelector("#toast");
@@ -321,6 +323,34 @@ function openEditor() {
   editorDialog.showModal();
 }
 
+function openCardList() {
+  const custom = getCustomData();
+  const items = [...DEFAULT_ITEMS, ...custom.items];
+  const episodes = [
+    ...DEFAULT_EPISODES,
+    ...custom.episodes.map((text, index) => ({ id: `custom-list-${index}`, text, image: null }))
+  ];
+  cardListContent.innerHTML = `
+    <section class="library-section">
+      <div class="library-title"><h3>アイテムカード</h3><span>${items.length} CARDS</span></div>
+      <div class="item-library-grid">
+        ${items.map((item, index) => `<article class="library-item-card" style="--i:${index}"><small>ITEM ${String(index + 1).padStart(2, "0")}</small><strong>${escapeHTML(item)}</strong></article>`).join("")}
+      </div>
+    </section>
+    <section class="library-section">
+      <div class="library-title"><h3>ピンチエピソード</h3><span>${episodes.length} CARDS</span></div>
+      <div class="episode-library-grid">
+        ${episodes.map((episode, index) => `<article class="library-episode-card">
+          <div class="library-episode-image ${episode.image ? "" : "no-image"}" ${episode.image ? `style="background-image:url('${episode.image}')"` : ""}><b>EP ${String(index + 1).padStart(2, "0")}</b></div>
+          <p>${escapeHTML(episode.text)}</p>
+        </article>`).join("")}
+      </div>
+    </section>
+  `;
+  cardListDialog.showModal();
+  cardListDialog.querySelector(".card-list-shell").scrollTop = 0;
+}
+
 editorForm.addEventListener("submit", event => {
   event.preventDefault();
   const items = document.querySelector("#custom-items").value.split("\n").map(value => value.trim()).filter(Boolean);
@@ -351,6 +381,8 @@ document.addEventListener("click", event => {
     if (!state || window.confirm("現在のゲームを終了して、セットアップに戻りますか？")) renderSetup();
   }
   if (action === "open-editor") openEditor();
+  if (action === "open-card-list") openCardList();
+  if (action === "close-card-list") cardListDialog.close();
   if (action === "toggle-card") toggleCard(Number(button.dataset.team), Number(button.dataset.card));
   if (action === "present") presentTeam(Number(button.dataset.team));
   if (action === "close-presentation") presentationDialog.close();
@@ -376,6 +408,10 @@ document.addEventListener("click", event => {
 
 presentationDialog.addEventListener("click", event => {
   if (event.target === presentationDialog) presentationDialog.close();
+});
+
+cardListDialog.addEventListener("click", event => {
+  if (event.target === cardListDialog) cardListDialog.close();
 });
 
 renderSetup();
