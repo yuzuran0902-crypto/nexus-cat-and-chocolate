@@ -349,6 +349,29 @@ body {
 .presentation-card { border: 3px solid var(--ink); border-radius: 18px 44px 18px 18px; box-shadow: 9px 9px 0 var(--ink); }
 .editor-dialog { border: 3px solid var(--ink); box-shadow: 9px 9px 0 var(--ink); }
 
+.card-list-dialog { width: min(1120px, calc(100% - 28px)); max-height: calc(100vh - 28px); border: 3px solid var(--ink); border-radius: 22px; background: var(--paper); color: var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.card-list-dialog::backdrop { background: rgba(39,35,63,.72); backdrop-filter: blur(8px); }
+.card-list-shell { max-height: calc(100vh - 34px); overflow: auto; padding: clamp(22px, 4vw, 42px); }
+.card-list-header { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding-bottom: 26px; border-bottom: 3px solid var(--ink); }
+.card-list-header .eyebrow { margin-bottom: 8px; }
+.card-list-header h2 { margin: 0; font-size: clamp(30px, 5vw, 54px); font-weight: 900; letter-spacing: -.06em; }
+.card-list-header p:last-child { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
+.library-section { padding-top: 34px; }
+.library-section + .library-section { margin-top: 36px; border-top: 3px dashed rgba(39,35,63,.28); }
+.library-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 17px; }
+.library-title h3 { margin: 0; font-size: 21px; font-weight: 900; }
+.library-title span { padding: 7px 11px; border: 2px solid var(--ink); border-radius: 99px; background: var(--yellow); font: 700 10px "DM Mono", monospace; box-shadow: 2px 2px 0 var(--ink); }
+.item-library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 12px; }
+.library-item-card { min-height: 138px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; border: 2px solid var(--ink); border-radius: 13px; background: hsl(calc((var(--i) * 37) + 40) 95% 92%); box-shadow: 4px 4px 0 var(--ink); }
+.library-item-card small { color: var(--muted); font: 700 9px "DM Mono", monospace; }
+.library-item-card strong { font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.episode-library-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.library-episode-card { overflow: hidden; display: grid; grid-template-columns: 180px 1fr; min-height: 170px; border: 2px solid var(--ink); border-radius: 16px; background: white; box-shadow: 5px 5px 0 var(--ink); }
+.library-episode-image { min-height: 170px; padding: 13px; background-position: center; background-size: cover; border-right: 2px solid var(--ink); }
+.library-episode-image.no-image { background: linear-gradient(135deg, var(--yellow), #ff9bca); }
+.library-episode-image b { display: inline-block; padding: 5px 8px; border: 2px solid var(--ink); border-radius: 99px; background: var(--yellow); font: 800 9px "DM Mono", monospace; box-shadow: 2px 2px 0 var(--ink); }
+.library-episode-card p { margin: 0; padding: 17px; font-size: 12px; font-weight: 600; line-height: 1.8; }
+
 @media (max-width: 1050px) {
   .setup-page { grid-template-columns: 1fr 460px; }
   .episode-content { width: 58%; }
@@ -366,6 +389,7 @@ body {
   .episode-content h1 { font-size: 18px; }
   .mission-badge { width: 110px; height: 110px; top: 122px; right: 22px; }
   .hand { grid-template-columns: repeat(5, minmax(100px,1fr)); }
+  .episode-library-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
   .brand-copy strong { max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -375,4 +399,9 @@ body {
   .episode-content { padding-bottom: 105px; }
   .teams-grid { grid-template-columns: 1fr; }
   .point-award { align-items: flex-start; }
+  .topbar-actions { gap: 7px; }
+  .card-list-shell { padding: 20px 16px 30px; }
+  .library-episode-card { grid-template-columns: 118px 1fr; }
+  .library-episode-image { min-height: 150px; }
+  .item-library-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
