@@ -61,10 +61,21 @@ const getCustomData = () => {
   }
 };
 
+const getAllItems = () => [...new Set([...DEFAULT_ITEMS, ...getCustomData().items])];
+
+const randomInt = (max) => {
+  if (window.crypto?.getRandomValues) {
+    const values = new Uint32Array(1);
+    window.crypto.getRandomValues(values);
+    return Math.floor((values[0] / 4294967296) * max);
+  }
+  return Math.floor(Math.random() * max);
+};
+
 const shuffle = (list) => {
   const copy = [...list];
   for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = randomInt(i + 1);
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
@@ -109,7 +120,7 @@ function startGame() {
   });
 
   const custom = getCustomData();
-  const allItems = [...DEFAULT_ITEMS, ...custom.items];
+  const allItems = getAllItems();
   const deck = shuffle(allItems.map((name, index) => ({ id: `item-${index}-${name}`, name })));
   const teams = Array.from({ length: setup.teamCount }, (_, index) => ({
     name: setup.names[index], color: TEAM_COLORS[index], hand: deck.splice(0, 5), selected: [], score: 0, roundPoints: 0
@@ -117,6 +128,7 @@ function startGame() {
   const customEpisodes = custom.episodes.map((text, index) => ({ id: `custom-${index}`, text, image: null }));
   state = {
     round: 1,
+    itemTotal: allItems.length,
     deck,
     teams,
     episodes: [...DEFAULT_EPISODES, ...customEpisodes],
@@ -135,9 +147,9 @@ function drawEpisode() {
     state.episodeHistory = [];
     candidates = [...state.episodes];
   }
-  state.episode = candidates[Math.floor(Math.random() * candidates.length)];
+  state.episode = candidates[randomInt(candidates.length)];
   state.episodeHistory.push(state.episode.id);
-  state.required = Math.floor(Math.random() * 3) + 1;
+  state.required = randomInt(3) + 1;
   state.teams.forEach(team => { team.selected = []; team.roundPoints = 0; });
   renderGame();
 }
@@ -152,6 +164,7 @@ function renderGame() {
         <div class="status-left">
           <span class="round-label">ROUND <b>${String(state.round).padStart(2, "0")}</b></span>
           <span class="status-pill">山札 <strong>${state.deck.length}枚</strong></span>
+          <span class="status-pill">アイテム <strong>全${state.itemTotal}枚</strong></span>
           <span class="status-pill">エピソード <strong>${state.episodeHistory.length}/${state.episodes.length}</strong></span>
         </div>
         <div class="status-actions">
@@ -179,7 +192,7 @@ function renderGame() {
       <section class="teams-section">
         <div class="section-heading">
           <h2>チームの手札</h2>
-          <p>各チーム ${state.required}枚 選択して発表</p>
+          <p>全${state.itemTotal}枚からランダム配布 · 各チーム ${state.required}枚選択</p>
         </div>
         <div class="teams-grid" style="--team-count:${state.teams.length}">
           ${state.teams.map(renderTeam).join("")}
@@ -276,8 +289,7 @@ function drawFromDeck(count) {
   const drawn = [];
   for (let i = 0; i < count; i += 1) {
     if (!state.deck.length) {
-      const custom = getCustomData();
-      state.deck = shuffle([...DEFAULT_ITEMS, ...custom.items].map((name, index) => ({ id: `reshuffle-${state.round}-${index}-${Math.random()}`, name })));
+      state.deck = shuffle(getAllItems().map((name, index) => ({ id: `reshuffle-${state.round}-${index}-${Date.now()}`, name })));
     }
     drawn.push(state.deck.shift());
   }
@@ -325,7 +337,7 @@ function openEditor() {
 
 function openCardList() {
   const custom = getCustomData();
-  const items = [...DEFAULT_ITEMS, ...custom.items];
+  const items = getAllItems();
   const episodes = [
     ...DEFAULT_EPISODES,
     ...custom.episodes.map((text, index) => ({ id: `custom-list-${index}`, text, image: null }))
