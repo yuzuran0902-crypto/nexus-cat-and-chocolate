@@ -165,6 +165,7 @@ function renderGame() {
           <span class="round-label">ROUND <b>${String(state.round).padStart(2, "0")}</b></span>
           <span class="status-pill">山札 <strong>${state.deck.length}枚</strong></span>
           <span class="status-pill">アイテム <strong>全${state.itemTotal}枚</strong></span>
+          <span class="status-pill">補充 <strong>山札の先頭から</strong></span>
           <span class="status-pill">エピソード <strong>${state.episodeHistory.length}/${state.episodes.length}</strong></span>
         </div>
         <div class="status-actions">
@@ -192,7 +193,7 @@ function renderGame() {
       <section class="teams-section">
         <div class="section-heading">
           <h2>チームの手札</h2>
-          <p>全${state.itemTotal}枚からランダム配布 · 各チーム ${state.required}枚選択</p>
+          <p>最初に一度シャッフル · 使用済みは山札の最後へ</p>
         </div>
         <div class="teams-grid" style="--team-count:${state.teams.length}">
           ${state.teams.map(renderTeam).join("")}
@@ -288,9 +289,7 @@ function presentTeam(teamIndex) {
 function drawFromDeck(count) {
   const drawn = [];
   for (let i = 0; i < count; i += 1) {
-    if (!state.deck.length) {
-      state.deck = shuffle(getAllItems().map((name, index) => ({ id: `reshuffle-${state.round}-${index}-${Date.now()}`, name })));
-    }
+    if (!state.deck.length) break;
     drawn.push(state.deck.shift());
   }
   return drawn;
@@ -307,10 +306,10 @@ function finishRound() {
     team.selected = [];
     team.roundPoints = 0;
   });
-  state.deck = shuffle([...state.deck, ...returnedCards]);
+  state.deck.push(...shuffle(returnedCards));
   state.teams.forEach(team => { team.hand.push(...drawFromDeck(5 - team.hand.length)); });
   state.round += 1;
-  showToast(`${returnedCards.length}枚を山札に戻し、手札を補充しました`);
+  showToast(`使用済み${returnedCards.length}枚を山札の最後へ。先頭から手札を補充しました`);
   drawEpisode();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
